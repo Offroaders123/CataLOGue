@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 const logs = await readFile("./library.log",{ encoding: "utf-8" });
 // console.log(logs);
 
-for (const log of logs.split("======== ")){
+const entries = logs.split("======== ").map(log => {
   // console.log(log);
   const lines: string[] = log.split("\n");
   if (lines.at(-1) === "") lines.pop();
@@ -19,5 +19,8 @@ for (const log of logs.split("======== ")){
     // path,
     ...Object.fromEntries(properties)
   };
-  console.log(content);
-}
+  // console.log(content);
+
+  return content;
+});
+console.log(entries);
