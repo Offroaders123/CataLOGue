@@ -1,3 +1,4 @@
+import Song from "./Song.js";
 import { delogger } from "./lib-delogger.js";
 
 const logs: string = await fetch(new URL("./library.log",import.meta.url))
@@ -11,14 +12,8 @@ export default function App(){
   return (
     <>
       <h1>CataLOGue</h1>
-      {entries.map((entry) =>
-        <fieldset>
-          {Object.entries(entry).map(property =>
-            property[0] === "Title"
-              ? <legend id={property[1]}>{property[1]}</legend>
-              : <p>{property[0]}: {property[1]}</p>
-          )}
-        </fieldset>
+      {entries.map(entry =>
+        <Song entry={entry}></Song>
       )}
     </>
   );
