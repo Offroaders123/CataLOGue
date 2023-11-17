@@ -1,10 +1,7 @@
-import { readFile } from "node:fs/promises";
-
-const LIB = new URL("./library.log",import.meta.url);
-
-const logs = await readFile(LIB,{ encoding: "utf-8" });
-// console.log(logs);
-
+/**
+ * Parse the log file of the songs in my music library.
+*/
+export function delogger(logs: string): Record<string, string>[] {
 const entries = logs.split("======== ").map(log => {
   // console.log(log);
   const lines: string[] = log.split("\n");
@@ -25,4 +22,6 @@ const entries = logs.split("======== ").map(log => {
 
   return content;
 });
-console.log(entries);
+
+return entries;
+}
