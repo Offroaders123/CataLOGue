@@ -1,6 +1,8 @@
 import { readFile } from "node:fs/promises";
 
-const logs = await readFile("./library.log",{ encoding: "utf-8" });
+const LIB = new URL("./library.log",import.meta.url);
+
+const logs = await readFile(LIB,{ encoding: "utf-8" });
 // console.log(logs);
 
 const entries = logs.split("======== ").map(log => {
