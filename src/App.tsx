@@ -12,11 +12,13 @@ export default function App(){
     <>
       <h1>CataLOGue</h1>
       {entries.map((entry) =>
-        <section>
-        {Object.entries(entry).map(property =>
-          <p>{property[0]}: {property[1]}</p>
-        )}
-        </section>
+        <fieldset>
+          {Object.entries(entry).map(property =>
+            property[0] === "Title"
+              ? <legend id={property[1]}>{property[1]}</legend>
+              : <p>{property[0]}: {property[1]}</p>
+          )}
+        </fieldset>
       )}
     </>
   );
